@@ -13,15 +13,15 @@ x = 10
 print(type(x))
 ```
 
-   `Answer:` _______________________
+   `Answer:` <class 'int'>
 
 2. What scalar type would best represent:
-   - A person's name: _______
-   - Their age: _______
-   - Whether they passed a test: _______
+   - A person's name: str
+   - Their age: int
+   - Whether they passed a test: bool
 
 3. Why does `int('21')` work, but `int('twenty-one')` raise an error?  
-   `Answer:` _______________________
+   `Answer:` int() only converts strings that look like integers, but it raise error because its string.
 
 ---
 
@@ -30,6 +30,18 @@ print(type(x))
 ```python
 # Create a variable for each type and print its value and type.
 # Example: an int, float, str, and bool.
+
+`Answer:`
+my_int = 42
+my_float = 3.14
+my_str = "Hello"
+my_bool = True
+
+print(my_int, type(my_int))
+print(my_float, type(my_float))
+print(my_str, type(my_str))
+print(my_bool, type(my_bool))
+
 ```
 
 ### ✏️ Task: Arithmetic
@@ -38,6 +50,14 @@ print(type(x))
 # Given: hours_worked = 37, hourly_rate = 15.50
 # Print the total pay.
 # Print the total pay rounded to 2 decimal places (hint: round()).
+`Answer:`
+hours_worked = 37
+hourly_rate = 15.50
+total_pay = hours_worked * hourly_rate
+
+print(total_pay)
+print(round(total_pay, 2))
+
 ```
 
 ### ✏️ Task: Casting Round Trip
@@ -45,19 +65,25 @@ print(type(x))
 ```python
 # Given: user_input = "3.14159"
 # Convert it to a float, then print it rounded to 2 decimal places.
+`Answer:`
+user_input = "3.14159"
+value = float(user_input)
+print(round(value, 2))
+
 ```
 
 ### 🤖 Explain It
 
 In your own words: why does `input()` always return a string, and why does that matter when you want to do math with what the user typed?
-
+`Answer:`
+input() always returns a string because it reads what the user types as text. If we want to do math, we need to convert it into a number using int() or float()
 ---
 
 ## 🔁 Section 2: Comparison Operators
 
 4. What does the `!=` operator mean?
 
-   `Answer:` _______________________
+   `Answer:` not equal
 
 5. What will the following code print?
 
@@ -67,10 +93,10 @@ b = 3
 print(a < b or b < 10)
 ```
 
-   `Answer:` _______________________
+   `Answer:` True
 
 6. What does `0 <= score <= 100` check, and how would you write the same thing *without* chaining?  
-   `Answer:` _______________________
+   `Answer:` score >= 0 and score <= 100
 
 ---
 
@@ -81,12 +107,16 @@ print(a < b or b < 10)
 # Print True if it's within normal human body temperature range (97.0 to 99.0), else False.
 # Try it both as a chained comparison and as two separate comparisons joined with "and".
 ```
+`Answer:`
+temperature >= 97.0 and temperature <= 99.0
 
 ### 🤖 Explain It
 
-In your own words: what's the difference between `=` and `==` in Python? Why does mixing them up cause errors (or worse, silently wrong code)?
+In your own words: what's the difference between `=` and `==` in Python? Why does mixing them up cause errors (or worse, silently wrong code)?  = is for assigns, == is for compares. using = in if causes SyntaxError, while using == to assign does nothing.
 
 **If you've written C++:** explain why `0 <= score <= 100` is safe to write in Python but dangerous to write in C++. What does the C++ version actually evaluate to, and how would you fix it?
+`Answer:`
+In Python it’s safe, in C++ it always evaluates to true because (0 <= score) becomes 1 or 0, then compared to 100. Fix: 0 <= score && score <= 100
 
 ---
 
@@ -95,11 +125,12 @@ In your own words: what's the difference between `=` and `==` in Python? Why doe
 7. Write a conditional that prints "Pass" if a grade is >= 70, and "Fail" otherwise.
 
 ```python
-# Your code:
+`Answer:`
+if grade >= 70: print("Pass") else: print("Fail")
 ```
 
 8. What does `elif` allow you to do that separate `if` statements don't?  
-   `Answer:` _______________________
+   `Answer:` elif checks only if previous conditions were false, where separate ifs check all.
 
 9. What will this print?
 
@@ -109,7 +140,7 @@ has_ticket = False
 print(age >= 13 and has_ticket)
 ```
 
-   `Answer:` _______________________
+   `Answer:` False
 
 ---
 
@@ -119,6 +150,16 @@ print(age >= 13 and has_ticket)
 # Given: bmi = 22.5
 # Print the BMI category:
 # "Underweight" (< 18.5), "Normal" (18.5-24.9), "Overweight" (25-29.9), "Obese" (30+)
+
+bmi = 22.5
+if bmi < 18.5:
+    print("Underweight")
+elif bmi < 25: 
+    print("Normal")
+elif bmi < 30:
+    print("Overweight")
+else:                  
+    print("Obese")
 ```
 
 ### ✏️ Task: Multi-Line Branches
@@ -131,6 +172,22 @@ print(age >= 13 and has_ticket)
 # Use item_price = 20.00 per item as the starting subtotal.
 # Each branch should have at least 3 lines — this is the same shape as the
 # "One Branch, Many Lines" example in the notebook.
+
+cart_items = 3
+member_since_days = 400
+item_price = 20.00
+subtotal = cart_items * item_price
+
+if member_since_days >= 365:
+    discount = subtotal * 0.15
+    final_price = subtotal - discount
+    print(f"Loyalty discount: -${discount:.2f}")
+    print(f"Discounted subtotal: ${subtotal - discount:.2f}")
+    print(f"Final price: ${final_price:.2f}")
+else:
+    print("No discount yet.")
+    print(f"Full price: ${subtotal:.2f}")
+    print("Keep shopping to earn loyalty rewards!")
 ```
 
 ### ✏️ Task: Your Turn
@@ -139,11 +196,24 @@ Write a program that asks for the weather and prints:
 - "Bring sunscreen" if it's sunny
 - "Take an umbrella" if it's raining
 - "Check the forecast" otherwise
+- 
+`Answer:`
+weather = input('What is the weather like? ')
 
+if weather == 'sunny':
+    print('Bring sunscreen')
+elif weather == 'rainy':
+    print('Take an umbrella')
+else:
+    print('Check the forecast')
+
+
+    
 ### 🤖 Explain It
 
 In your own words: what's the difference between using `and` versus writing nested `if` statements to check two conditions? Do they always produce the same result?
-
+`Answer:`
+both require all conditions true, and is shorter, where nested is useful when there are extra steps between checks.
 ---
 
 ## 🚀 Section 4: Going Further (Optional)
@@ -158,6 +228,12 @@ These pair with the "🔥 Challenge" sections in the notebooks — skip if you h
 #     comfort = "too hot"
 # else:
 #     comfort = "fine"
+
+`Answer:`
+temperature = 95
+comfort = "too hot" if temperature > 90 else "fine"
+print(comfort)
+
 ```
 
 ### ✏️ Task: Float Precision
@@ -165,6 +241,14 @@ These pair with the "🔥 Challenge" sections in the notebooks — skip if you h
 ```python
 # Predict, then check: does 0.1 + 0.1 + 0.1 == 0.3 evaluate to True or False in Python?
 # Write a "close enough" check instead of using == directly.
+
+`Answer:`
+print(0.1 + 0.1 + 0.1 == 0.3) 
+
+def close_enough(a, b):
+    return abs(a - b) < 0.0001   
+
+print(close_enough(0.1 + 0.1 + 0.1, 0.3))
 ```
 
 ### ✏️ Task: Match Statement
@@ -175,12 +259,24 @@ These pair with the "🔥 Challenge" sections in the notebooks — skip if you h
 #   "Excellent" for 'A'
 #   "Good" for 'B' or 'C'
 #   "Needs improvement" for anything else (use the "_" wildcard case)
+
+`Answer:`
+grade_letter = 'B'
+
+match grade_letter:
+    case 'A':
+        print("Excellent")
+    case 'B' | 'C':
+        print("Good")
+    case _:
+        print("Needs improvement")
 ```
 
 ### 🤖 Explain It
 
 **If you've written C++:** how is Python's `match`/`case` similar to a C++ `switch`? What can `match` do (strings, multiple values per case with `|`) that a plain C++ `switch` can't?
-
+`Answer:`
+both do multi‑way branching, where match works with strings and can combine values with |, where C++ switch only works with integral types
 ---
 
 ## 🧾 Submit Checklist
