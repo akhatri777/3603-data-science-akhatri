@@ -20,14 +20,14 @@ for t in temps:
 
 | pass | `t` | `total` | `count` |
 |------|-----|---------|---------|
-| start | — | 0 | 0 |
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
+| start | —  | 0 | 0 |
+| 1     | 31 | 31  | 1  |
+| 2     | 45 | 76  | 1  |
+| 3     | 28 | 104 | 2  |
+| 4     | 52 | 156 | 2  |
 
 Which **two** patterns are mixed together in this loop?  
-`Answer:` ____________________________
+`Answer:` Accumulate and Count
 
 > 🤖 **Explain It:** Explain the difference between Accumulate, Count, and Filter as if you were talking to someone who has never programmed.
 
@@ -61,13 +61,13 @@ course = {
 
 Write the value after **each** step:
 
-1. `course["students"]` → ____________________________
-2. `course["students"][1]` → ____________________________
-3. `course["students"][1]["scores"]` → ____________________________
-4. `course["students"][1]["scores"][0]` → ____________________________
+1. `course["students"]` → [{"name": "Ana", "scores": [88, 92]}, {"name": "Ben", "scores": [75, 81]}]
+2. `course["students"][1]` → {"name": "Ben", "scores": [75, 81]}
+3. `course["students"][1]["scores"]` → [75, 81]
+4. `course["students"][1]["scores"][0]` → 75
 
 Write the expression that gets Ana's second score:  
-`Answer:` ____________________________
+`Answer:` course["students"][0]["scores"][1]
 
 ---
 
@@ -82,8 +82,8 @@ def f(x):
 print(f(f(f(0))))
 ```
 
-   `Answer:` ____________________________
-
+   `Answer:` 3
+   
 2. What prints? Explain why.
 
 ```python
@@ -94,7 +94,9 @@ x = shout("hi")
 print(x)
 ```
 
-   `Answer:` ____________________________
+   `Answer:`
+   HI
+   None
 
 3. Circle the **parameters** and underline the **arguments**:
 
@@ -107,6 +109,8 @@ greet("Ada", "Hello")
 
 > 🤖 **Explain It:** In your own words, explain `print()` vs. `return`. Then explain why getting it wrong breaks a pipeline.
 
+print() displays a value on the screen, while return sends a value back from a function. If we use print() instead of return, the next function in a pipeline gets None instead of the result, so the pipeline breaks.
+
 ---
 
 ## 🧠 Section 5: Contracts and Tests
@@ -114,16 +118,16 @@ greet("Ada", "Hello")
 Write a contract for a function `longest_word(words)`:
 
 ```text
-IN:
-OUT:
-DOES:
+IN: a list of strings
+OUT: a single string 
+DOES: loop through the list
 ```
 
 Write one test of each kind:
 
-- Normal: ____________________________
-- Boundary: ____________________________
-- Weird: ____________________________
+- Normal: longest_word(["cat", "elephant", "dog"])
+- Boundary: longest_word(["one"])
+- Weird: longest_word([""])_
 
 ---
 

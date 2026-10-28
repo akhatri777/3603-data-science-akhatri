@@ -7,10 +7,10 @@ Use this worksheet to review and reinforce your understanding of Python's core d
 ## 🧠 Section 1: Lists
 
 1. What method adds an item to the end of a list?  
-   `Answer:` ____________________________
+   `Answer:` append()
 
 2. How can you remove an item from a list by value? By position?  
-   `Answer:` ____________________________
+   `Answer:` By value: remove(value). By position: pop(index)
 
 3. What's the result of this code?
 
@@ -20,19 +20,19 @@ nums.append(8)
 print(nums)
 ```
 
-   `Answer:` ____________________________
+   `Answer:` [2, 4, 6, 8]
 
 4. What does `my_list[1:4]` return, given `my_list = [10, 20, 30, 40, 50]`?  
-   `Answer:` ____________________________
+   `Answer:` [20, 30, 40]
 
 4a. Given `a = [1, 2]` and `b = [3, 4]`, what is the result of `a + b`? Of `a.append(b)`? Of `a.extend(b)`?  
-   `Answer:` ____________________________
+   `Answer:` a
 
 4b. Given `grid = [[1, 2], [3, 4]]`, how do you access the value `3`?  
-   `Answer:` ____________________________
+   `Answer:` 3
 
 4c. List three different ways to remove an item from a list.  
-   `Answer:` ____________________________
+   `Answer:` remove(value), pop(index), and del mylist[index]
 
 ---
 
@@ -43,6 +43,10 @@ print(nums)
 # Add another food to the list.
 # Remove one item and print the list.
 ```
+foods = ['pizza', 'sushi', 'tacos']
+foods.append('pasta')
+foods.remove('sushi')
+print(foods)
 
 ### ✏️ Task: Slicing and Sorting
 
@@ -52,6 +56,10 @@ print(nums)
 # 2. Print the numbers sorted from smallest to largest.
 # 3. Print the numbers sorted from largest to smallest.
 ```
+numbers = [42, 17, 8, 99, 23, 4]
+print(numbers[:3])       
+print(sorted(numbers))      
+print(sorted(numbers, reverse=True))
 
 ### ✏️ Task: Filtering
 
@@ -60,6 +68,13 @@ print(nums)
 # Build a new list called "hot" containing only temps over 85.
 # Print "hot".
 ```
+temps = [55, 72, 90, 43, 88, 67, 101]
+hot = []
+for t in temps:
+    if t > 85:
+        hot.append(t)
+print(hot)
+
 
 ### ✏️ Task: Combine Lists Three Ways
 
@@ -71,7 +86,19 @@ print(nums)
 #    Notice how many items the list has now, and why.
 # 3. On another fresh copy, use .extend(extras) and print the result.
 ```
+morning = ['eggs', 'toast']
+extras  = ['jam', 'coffee']
 
+breakfast = morning + extras       
+print(breakfast)                   
+
+a = morning.copy()
+a.append(extras)
+print(a)                           
+
+b = morning.copy()
+b.extend(extras)
+print(b)                            
 ### ✏️ Task: 2D List (grid)
 
 ```python
@@ -84,7 +111,13 @@ print(nums)
 # 2. Change the center value to 0.
 # 3. Loop over the board and print each row on its own line.
 ```
+board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(board[2][0])
+board[1][1] = 0         
+for row in board:
+    print(row)
 
+    
 ### ✏️ Task: Deleting Items
 
 ```python
@@ -95,6 +128,13 @@ print(nums)
 # 4. Print the remaining queue and "served".
 ```
 
+queue = ['Ana', 'Ben', 'Cy', 'Dana', 'Eve']
+queue.remove('Cy')
+served = queue.pop()
+del queue[0]            
+print(queue)            
+print(served)           
+
 ### ✏️ Task: Iterate by Index
 
 ```python
@@ -103,23 +143,33 @@ print(nums)
 # 2. Using the index, add 5 to every price in place, then print the list.
 # 3. Rewrite step 1 using enumerate() instead.
 ```
-
+prices = [10, 20, 30, 40]
+for i in range(len(prices)):
+    print(f"{i}: {prices[i]}")
+for i in range(len(prices)):
+    prices[i] += 5
+print(prices)      
+for i, p in enumerate(prices):
+    print(f"{i}: {p}")
 ### 🤖 Explain It
 
 In your own words: what's the difference between a list and a slice of a list? Is slicing a list the same as modifying it? And when you write `a.append(b)` versus `a.extend(b)`, what ends up in `a` each way?
+A list stores multiple items, while a slice return a part of the list. Slicing doesn’t change the original list, it makes a new list.
+a.append(b) adds b as one item to a, while a.extend(b) adds each item from b separately to a.
+
 
 ---
 
 ## 🔒 Section 2: Tuples
 
 5. What is a key difference between a list and a tuple?  
-   `Answer:` ____________________________
+   `Answer:` Tuples are immutable, where list are mutable.
 
 6. Can you change the contents of a tuple once it is created? Why or why not?  
-   `Answer:` ____________________________
+   `Answer:` No we can't change, tuples are immutable. Once created, we can't reassign or add/remove elements.
 
 7. What does `first, *rest = (10, 20, 30, 40)` assign to `first` and `rest`?  
-   `Answer:` ____________________________
+   `Answer:` first = 10, rest = (20, 30, 40)
 
 ---
 
@@ -129,6 +179,10 @@ In your own words: what's the difference between a list and a slice of a list? I
 # Create a tuple with your favorite 3 numbers.
 # Unpack it into three variables and print each.
 ```
+nums = (7, 14, 21)
+a, b, c = nums
+print(a, b, c)
+
 
 ### ✏️ Task: Unpacking with *rest
 
@@ -137,6 +191,11 @@ In your own words: what's the difference between a list and a slice of a list? I
 # Unpack this into "winner" (the first time) and "others" (everything else).
 # Print both.
 ```
+race_times = (9.58, 9.63, 9.69, 9.71, 9.74)
+winner, *others = race_times
+print(winner)  
+print(others)
+
 
 ### ✏️ Task: Tuples as Dictionary Keys
 
@@ -145,29 +204,36 @@ In your own words: what's the difference between a list and a slice of a list? I
 # tuples and the values are the distance in miles between them.
 # Add at least two entries, then look up and print one of them.
 ```
+distances = {
+    ('San Antonio', 'Dallas'): 274,
+    ('Dallas', 'Houston'): 239,
+}
+print(distances[('San Antonio', 'Dallas')])
+
 
 ### 🤖 Explain It
 
 In your own words: why does Python allow a tuple to be a dictionary key, but not a list? What property makes that possible?
+A tuple can be a dictionary key because it is immutable. while a list is mutable.
 
 ---
 
 ## 🔑 Section 3: Dictionaries
 
 8. What does the `.get()` method do differently from accessing a key directly with `[]`?  
-   `Answer:` ____________________________
+   `Answer:` get() returns None if the key is missing, where d[key] raises a KeyError instead.
 
 9. How do you loop through both keys and values in a dictionary?  
-   `Answer:` ____________________________
+   `Answer:` for key, value in d.items():
 
 10. How would you remove a key from a dictionary and also capture the value it held?  
-    `Answer:` ____________________________
+    `Answer:` value = d.pop(key)
 
 11. In a list of dictionaries like `people = [{'name': 'Ana'}, {'name': 'Ben'}]`, how do you get Ben's name?  
-    `Answer:` ____________________________
+    `Answer:` people[1]['name']
 
 12. If the same dictionary object is stored in both a list and another dictionary, and you change it through one, does the other see the change? Why?  
-    `Answer:` ____________________________
+    `Answer:` Yes, both see the change because they refer to the same dictionary object in memory. Changing it through one reference changes the same object.
 
 ---
 
@@ -177,7 +243,11 @@ In your own words: why does Python allow a tuple to be a dictionary key, but not
 # Create a dictionary with keys: 'name', 'age', and 'hobby'.
 # Print each key and value in the format "key: value".
 ```
+person = {'name': 'Alex', 'age': 21, 'hobby': 'chess'}
+for k, v in person.items():
+    print(f"{k}: {v}")
 
+    
 ### ✏️ Task: Build from Two Lists
 
 ```python
@@ -186,6 +256,12 @@ In your own words: why does Python allow a tuple to be a dictionary key, but not
 # Build a dictionary mapping each product to its price.
 # Print the total cost of all products (hint: sum the .values()).
 ```
+products = ['pen', 'notebook', 'eraser']
+prices = [1.50, 3.25, 0.75]
+price_map = dict(zip(products, prices))
+print(price_map)
+print(sum(price_map.values()))
+
 
 ### ✏️ Task: Nested Dictionaries
 
@@ -198,7 +274,14 @@ In your own words: why does Python allow a tuple to be a dictionary key, but not
 # Loop through inventory and print a line for each fruit like:
 # "apples: 50 units at $0.50"
 ```
+inventory = {
+    'apples': {'count': 50, 'price': 0.50},
+    'bananas': {'count': 30, 'price': 0.25},
+}
+for fruit, info in inventory.items():
+    print(f"{fruit}: {info['count']} units at ${info['price']:.2f}")
 
+    
 ### ✏️ Task: List of Dictionaries (table rows)
 
 ```python
@@ -211,6 +294,19 @@ In your own words: why does Python allow a tuple to be a dictionary key, but not
 # 2. Add a new student record to the list.
 # 3. Build and print a list of just the names of everyone majoring in 'CS'.
 ```
+roster = [
+    {'name': 'Alex', 'major': 'CS'},
+    {'name': 'Ana',  'major': 'Math'},
+    {'name': 'Ben',  'major': 'History'},
+]
+for row in roster:
+    print(f"{row['name']} - {row['major']}")
+
+roster.append({'name': 'Dana', 'major': 'CS'})
+
+cs_names = [row['name'] for row in roster if row['major'] == 'CS']
+print(cs_names)
+
 
 ### ✏️ Task: Update a Record by Row Number
 
@@ -222,9 +318,16 @@ In your own words: why does Python allow a tuple to be a dictionary key, but not
 # 3. Print roster[2] and explain why it changed too.
 ```
 
+by_row = {i: row for i, row in enumerate(roster)}
+by_row[2]['major'] = 'CS'
+print(roster[2])
+
+
 ### 🤖 Explain It
 
 In your own words: what's the difference between `student['gpa']` and `student.get('gpa')` when `'gpa'` isn't in the dictionary? Which would you use, and when? Also: why does changing `by_row[2]` also change `roster[2]`?
+
+student['gpa'] raises a KeyError when 'gpa' is missing, where student.get('gpa') returns None.
 
 ---
 
@@ -240,6 +343,8 @@ These pair with the "🔥 Challenge" sections in the notebooks — skip if you h
 # for n in range(6):
 #     cubes.append(n ** 3)
 ```
+cubes = [n ** 3 for n in range(6)]
+
 
 ### ✏️ Task: namedtuple
 
@@ -247,6 +352,11 @@ These pair with the "🔥 Challenge" sections in the notebooks — skip if you h
 # Create a namedtuple called "Book" with fields "title" and "author".
 # Make one instance and print both fields by name.
 ```
+from collections import namedtuple
+Book = namedtuple('Book', ['title', 'author'])
+b = Book('The Hobbit', 'J.R.R. Tolkien')
+print(b.title, b.author)
+
 
 ### ✏️ Task: Word Counter
 
@@ -255,6 +365,12 @@ These pair with the "🔥 Challenge" sections in the notebooks — skip if you h
 # Build a dictionary counting how many times each word appears.
 # (Try it by hand first, then check yourself with collections.Counter.)
 ```
+text = "to be or not to be that is the question"
+counts = {}
+for word in text.split():
+    counts[word] = counts.get(word, 0) + 1
+print(counts)
+
 
 ### ✏️ Task: Parse Some JSON
 
